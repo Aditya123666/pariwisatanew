@@ -109,7 +109,7 @@ if(isset($_SESSION['username'])){
 							?>
 						</div>
 						
-						<label>Pilih Penginapan</label>
+						<label>Pilih Penginapannnnnnnn</label>
 						<div id="hotel" class="input-control select" data-role="input-control">
 							<select class="cmb">
 								<option value="">--Pilih Hotel--</option>
