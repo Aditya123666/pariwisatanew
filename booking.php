@@ -53,6 +53,12 @@ if(isset($_SESSION['username'])){
 
 	echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
 ?>
+<?php
+//	$query	=mysqli_query($kon,"SELECT * FROM tbl_daerah ORDER BY daerah");
+//	$tampil2	=mysqli_fetch_array($query);
+
+//	echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
+?>
     
     <!-- ---------------------------------------- ISI TAB ------------------------------------- -->
     <div class="container">
@@ -81,7 +87,7 @@ if(isset($_SESSION['username'])){
                 <form name="formBooking" method="post" action="#">
                     <fieldset>
                         <legend>Silahkan Dilengkapi Form Berikut!</legend>
-                        <lable>Nama Lengkap</lable>
+                        <lable>Nama Lengkapppp</lable>
                         <div class="input-control text" data-role="input-control">
 							<input type="hidden" name="id_user" readonly
 							 value="<?php echo $tampil['id_user'];?>">
@@ -97,37 +103,115 @@ if(isset($_SESSION['username'])){
 						<label>Pilih Tujuan Wisata</label>
                         <div class="input-control select" data-role="input-control">						
 							<select name='tujuan' onChange='DinamisDaerah(this);' class="cmb">
-							<option value="">--Pilih Tujuan Wisata-</option>
+							<option value=""selected>--Pilih Tujuan Wisataaa-</option>
 							<?php
-								$query = "select * from tbl_daerah";
-								$result = mysqli_query($query);
-								while ($set=mysqli_fetch_array($result))
+								$query	=mysqli_query($kon,"SELECT * FROM tbl_daerah ");
+								//$tampil2	=mysqli_fetch_array($query);
+								while($w=mysqli_fetch_array($query))
+
+								//while ($set=mysqli_fetch_array($tampil2)) 
+								//echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
+								//$query = mysqli_query ($kon,"SELECT * FROM tbl_daerah ORDER BY daerah  ");
+								//$result = mysqli_query($query);
+								//while ($set=mysqli_fetch_array($result))
+								//	echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
 								{
-									echo "<option value=$set[kode]>$set[daerah]</option>";
+		//							echo "<option value=$set[daerah]</option>";
+								//	echo "<option value=$set[kode]>$set[daerah]</option>";
+							//		echo '<option>'.$set['daerah'].'</option>';
+ 									//echo <td>$set[daerah]</td>
+									echo '<option>'.$w['daerah'].'</option>';
+									//echo "<option value=$w[daerah] selected>$w[daerah]</option>";        
+
 								}
 								echo"</select>";
-							?>
+							?>   					
 						</div>
-						
-						<label>Pilih Penginapan</label>
+						<!-- ///////////////////////////////TRRRRYYYYYYYYYYYY -->
+
+						<label>Pilih Tujuan Wisata percobaan</label>
+                        <div class="input-control select" data-role="input-control">						
+							<select name='tujuan' onChange='DinamisDaerah(this);' class="cmb">
+								<option value=""selected>--Pilih Tujuan Wisata-</option>
+								<?php
+									$query	=mysqli_query($kon,"SELECT * FROM tbl_daerah ");
+									//$tampil2	=mysqli_fetch_array($query);
+									while($w=mysqli_fetch_array($query))
+
+									{
+										echo '<option>'.$w['daerah'].'</option>';
+										//echo "<option value=$w[tbl_daerah]</option>";        
+
+										//echo '<option>'.$w['kode'].'</option>';
+										/*<option value="<?php echo $w["kode"]; ?>"><?php echo $w["daerah"];?></option>
+										*/
+
+									}
+									 echo"</select>";
+									
+								?>
+							</select>
+						</div>
+
+						<!-- percobaan  penginapannya -->
+						<label>Pilih Penginapan percobaan</label>
 						<div id="hotel" class="input-control select" data-role="input-control">
-							<select class="cmb">
-								<option value="">--Pilih Hotel--</option>
+							<select id="cobaah" class="cmb">
+								<option value=""selected>--Pilih Hotel--</option>
+								<?php
+									$query	=mysqli_query($kon,"SELECT * FROM tbl_hotel ORDER BY hotel ASC");
+								
+									while($w=mysqli_fetch_array($query))
+
+									{
+
+										echo '<option>'.$w['hotel'].'</option>';
+							
+									}
+									echo"</select>";
+
+								?>
 							</select>
                         </div>
+                        <script>
+                        	function getId(val){
+                        		//
+                        		$.ajax({
+                        			type:"POST",
+                        			url:"getdata.php",
+                        			data:"kode="+val,
+                        			success: function(data){
+                        				$("#cobaah").html(data);
+                        			}
+                        		});
+                        	}
+                        </script>
+						<!-- BATAAASSSSSSSSSSSSSSSSSSSSSSSSSS -->
+						
 						
 						<label>Pilih Kategori Paket</label>
                         <div class="input-control select" data-role="input-control">						
 							<select name='kategori' onChange='DinamisKategori(this);' class="cmb">
 							<option value="">--Pilih Kategori--</option>
 							<?php
-								$query = "select * from tbl_kategori";
-								$result = mysqli_query($query);
-								while ($set=mysqli_fetch_array($result))
-								{
-									echo "<option value=$set[id_kategori]>$set[kategori]</option>";
-								}
-								echo"</select>";
+									$query	=mysqli_query($kon,"SELECT * FROM tbl_paket ORDER BY id_kategori ASC");
+								
+									while($w=mysqli_fetch_array($query))
+
+									{
+
+										echo '<option>'.$w['id_kategori'].'</option>';
+							
+									}
+									echo"</select>";
+
+								// $query = "select * from tbl_kategori";
+								// $result = mysqli_query($query);
+								// while ($set=mysqli_fetch_array($result))
+								// {
+								// 	echo "<option value=$set[id_kategori]>$set[kategori]</option>";
+								// }
+								// echo"</select>";
 							?>
 						</div>
 						
@@ -135,6 +219,19 @@ if(isset($_SESSION['username'])){
 						<div id="paket" class="input-control select" data-role="input-control">
 							<select class="cmb">
 								<option value="">--Pilih Paket--</option>
+									<?php
+										$query	=mysqli_query($kon,"SELECT * FROM tbl_paket ORDER BY nama_paket ASC");
+								
+										while($w=mysqli_fetch_array($query))
+
+										{
+
+											echo '<option>'.$w['nama_paket'].'</option>';
+							
+										}
+										echo"</select>";
+
+									?>
 							</select>
                         </div>
 						<label>Anda ingin pembayaran di tempat?</label>
