@@ -1,5 +1,13 @@
 <?php session_start();
 
+            // echo $_POST['nama']." ";
+            // echo $_POST['dateTour']." ";
+            // echo $_POST['tujuan']." ";
+            // echo $_POST['hotelp']." ";
+            // echo $_POST['kategori_paket']." ";
+            // echo $_POST['paket']." ";
+            // echo $_POST['status']." ";
+
 if(isset($_SESSION['username'])){
 
 	//koneksi terpusat
@@ -60,6 +68,12 @@ if(isset($_SESSION['username'])){
                     
                     <tbody>
                     <?php
+                        // if (!empty($_POST['dateTour']) && !empty($_POST['tujuan']) && !empty($_POST['hotel']) && !empty($_POST['kategori']) && !empty($_POST['paket'])){
+
+        //  echo 'df';
+        // } 
+
+ 
 						$comot=mysqli_query($kon,"SELECT * FROM tbl_pesan, tbl_paket, tbl_hotel, tbl_user WHERE tbl_pesan.id_user=tbl_user.id_user AND tbl_pesan.id_paket=tbl_paket.id_paket AND tbl_pesan.id_hotel=tbl_hotel.id_hotel AND username='$username'");
 						
 						while($isi_tbl=mysqli_fetch_array($comot))
@@ -70,13 +84,14 @@ if(isset($_SESSION['username'])){
 						}else if($isi_tbl['status']=='S3'){
 							$txtS="Melakukan pembayaran di tempat";
 						}
+ 
 					?>
                     	<tr>
                         	<td>NINA-00<?php echo $isi_tbl['id_pesan']; ?></td>
                             <td><?php echo $isi_tbl['tgl_pesan']; ?></td>
-                            <td><?php echo $isi_tbl['tgl_tour']; ?></td>
-                            <td><?php echo $isi_tbl['nama_paket']; ?></td>
-                            <td><?php echo $isi_tbl['hotel']; ?></td>
+                            <td><?php echo $$_POST['dateTour']; ?></td>
+                            <td><?php echo $_POST['kategori_paket']; ?></td>
+                            <td><?php echo $_POST['hotelp']; ?></td>
                             <td><?php echo $isi_tbl['harga_paket']; ?> IDR</td>
                             <td><?php echo $isi_tbl['harga']; ?> IDR</td>
                             <td><?php echo $total_harga; ?> IDR</td>

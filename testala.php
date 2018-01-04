@@ -48,20 +48,12 @@ if(isset($_SESSION['username'])){
     <div class="" data-load="sampul.html"></div>
 	
 <?php
-	//$query	=mysqli_query($kon,"SELECT * FROM tbl_user WHERE username='$username'");
-	//$tampil	=mysqli_fetch_array($query);
-	//echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
 	$query	=mysqli_query($kon,"SELECT * FROM tbl_user WHERE username='$username'");
 	$tampil	=mysqli_fetch_array($query);
-	//echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
-	echo '<option>'.$tampil['username'].'</option>';
-?>
-<?php
-//	$query	=mysqli_query($kon,"SELECT * FROM tbl_daerah ORDER BY daerah");
-//	$tampil2	=mysqli_fetch_array($query);
 
-//	echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
+	echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
 ?>
+
     
     <!-- ---------------------------------------- ISI TAB ------------------------------------- -->
     <div class="container">
@@ -87,7 +79,7 @@ if(isset($_SESSION['username'])){
             </script>
 			
             <div class="span6">
-                <form name="formBooking" method="post" action="bookingList.php">
+                <form name="formBooking" method="post" action="#">
                     <fieldset>
                         <legend>Silahkan Dilengkapi Form Berikut!</legend>
                         <lable>Nama Lengkapppp</lable>
@@ -136,10 +128,10 @@ if(isset($_SESSION['username'])){
 						<!-- BATAAASSSSSSSSSSSSSSSSSSSSSSSSSS -->
 						<label>Pilih Penginapan</label>
 						<div id="hotel" class="input-control select" data-role="input-control">
-							<select class="cmb" name = "hotelp">
+							<select class="cmb">
 								<option value=""selected>--Pilih Hotel--</option>
 								<?php
-									$query	=mysqli_query($kon,"SELECT * FROM tbl_hotel ORDER BY hotel ASC");
+									$query	=mysqli_query($kon,"SELECT * FROM tbl_hotel ORDER BY hotel ");
 								
 									while($w=mysqli_fetch_array($query))
 
@@ -156,16 +148,16 @@ if(isset($_SESSION['username'])){
 						
 						<label>Pilih Kategori Paket</label>
                         <div class="input-control select" data-role="input-control">						
-							<select name='kategori_paket' onChange='DinamisKategori(this);' class="cmb">
+							<select name='kategori' onChange='DinamisKategori(this);' class="cmb">
 							<option value="">--Pilih Kategori--</option>
 							<?php
-									$query	=mysqli_query($kon,"SELECT * FROM tbl_kategori ORDER BY kategori ASC");
+									$query	=mysqli_query($kon,"SELECT * FROM tbl_paket ORDER BY id_kategori ASC");
 								
 									while($w=mysqli_fetch_array($query))
 
 									{
 
-										echo '<option>'.$w['kategori'].'</option>';
+										echo '<option>'.$w['id_kategori'].'</option>';
 							
 									}
 									echo"</select>";
@@ -182,7 +174,7 @@ if(isset($_SESSION['username'])){
 						
 						<label>Pilih Paket</label>
 						<div id="paket" class="input-control select" data-role="input-control">
-							<select class="cmb" name="paket">
+							<select class="cmb">
 								<option value="">--Pilih Paket--</option>
 									<?php
 										$query	=mysqli_query($kon,"SELECT * FROM tbl_paket ORDER BY nama_paket ASC");
