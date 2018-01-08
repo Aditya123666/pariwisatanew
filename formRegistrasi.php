@@ -38,6 +38,7 @@ if (isset($_POST['Login'])){
 		$row=mysqli_fetch_array($query);
 		
 		if($cek){
+            $_SESSION['user_id'] = $row['id_user'];
 			$_SESSION['username']=$username;
 			$_SESSION['password']=$password;
 			

@@ -46,6 +46,8 @@ if(isset($_SESSION['username'])){
 	<header class="bg-darkCobalt" data-load="atasan.php"></header>
     
     <div class="" data-load="sampul.html"></div>
+
+    <form action="booking.php" method="post">
 	
 <?php
 	//$query	=mysqli_query($kon,"SELECT * FROM tbl_user WHERE username='$username'");
@@ -54,7 +56,7 @@ if(isset($_SESSION['username'])){
 	$query	=mysqli_query($kon,"SELECT * FROM tbl_user WHERE username='$username'");
 	$tampil	=mysqli_fetch_array($query);
 	//echo "<script language=\"JavaScript\" src=\"comboBox.js\"></script>";
-	echo '<option>'.$tampil['username'].'</option>';
+	//echo '<input type="text" value="'.$tampil['username'].'">';
 ?>
 <?php
 //	$query	=mysqli_query($kon,"SELECT * FROM tbl_daerah ORDER BY daerah");
@@ -87,10 +89,10 @@ if(isset($_SESSION['username'])){
             </script>
 			
             <div class="span6">
-                <form name="formBooking" method="post" action="bookingList.php">
+                <!--form name="formBooking" method="post" action="bookingList.php"-->
                     <fieldset>
                         <legend>Silahkan Dilengkapi Form Berikut!</legend>
-                        <lable>Nama Lengkapppp</lable>
+                        <lable>Nama Lengkap</lable>
                         <div class="input-control text" data-role="input-control">
 							<input type="hidden" name="id_user" readonly
 							 value="<?php echo $tampil['id_user'];?>">
@@ -123,7 +125,7 @@ if(isset($_SESSION['username'])){
 								//	echo "<option value=$set[kode]>$set[daerah]</option>";
 							//		echo '<option>'.$set['daerah'].'</option>';
  									//echo <td>$set[daerah]</td>
-									echo '<option>'.$w['daerah'].'</option>';
+									echo '<option value="'.$w['id_daerah'].'">'.$w['daerah'].'</option>';
 									//echo "<option value=$w[daerah] selected>$w[daerah]</option>";        
 
 								}
@@ -136,7 +138,7 @@ if(isset($_SESSION['username'])){
 						<!-- BATAAASSSSSSSSSSSSSSSSSSSSSSSSSS -->
 						<label>Pilih Penginapan</label>
 						<div id="hotel" class="input-control select" data-role="input-control">
-							<select class="cmb" name = "hotelp">
+							<select class="cmb" name = "hotel">
 								<option value=""selected>--Pilih Hotel--</option>
 								<?php
 									$query	=mysqli_query($kon,"SELECT * FROM tbl_hotel ORDER BY hotel ASC");
@@ -145,7 +147,7 @@ if(isset($_SESSION['username'])){
 
 									{
 
-										echo '<option>'.$w['hotel'].'</option>';
+										echo '<option value="'.$w['id_hotel'].'">'.$w['hotel'].'</option>';
 							
 									}
 									echo"</select>";
@@ -165,7 +167,7 @@ if(isset($_SESSION['username'])){
 
 									{
 
-										echo '<option>'.$w['kategori'].'</option>';
+										echo '<option value="'.$w['id_kategori'].'">'.$w['kategori'].'</option>';
 							
 									}
 									echo"</select>";
@@ -191,7 +193,7 @@ if(isset($_SESSION['username'])){
 
 										{
 
-											echo '<option>'.$w['nama_paket'].'</option>';
+											echo '<option value="'.$w['id_paket'].'">'.$w['nama_paket'].'</option>';
 							
 										}
 										echo"</select>";
@@ -217,7 +219,7 @@ if(isset($_SESSION['username'])){
                             </div>
 						</div>
 						
-                        <input type="submit" name="Submit" value="Next">
+                        <input type="submit" name="Submit" value="Submit">
                     </fieldset>
                 </form>
             </div>
